@@ -7,6 +7,7 @@ import fourth from '../../Assets/fourthslide.webp'
 import '../Home/home.css'
 import InterShipData from '../Data/InternshipDatAvl.js'
 import JobData from '../Data/JobDataAvl.js'
+import Job from './Job.jsx'
 function Home() {
 
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -45,6 +46,7 @@ function Home() {
 
   return (
     <>
+      &nbsp; 
       <h1 className="text-center text-3xl font-bold">Make your dream career a reality</h1> 
       &nbsp; 
       <p className="text-center text-lg font-bold">Trending on InternArea 🔥</p>
@@ -62,9 +64,9 @@ function Home() {
         <button className='next' onClick={()=>handleSlide('right')}> <i className='bi bi-chevron-right' id='slide'></i> </button>
       </div>
       <div className="infoys">
-        <div className="info-intern">
+        <div className="info-intern mt-12">
           <div className="mt-16">
-            <h1 className='text-center font-bold'> Latest Internships on InternArea</h1>
+            <h1 className='text-center font-bold text-xl'> Latest Internships on InternArea</h1>
           </div>
           <div className="categories flex flex-wrap mt-14">
             <p>POPULAR CATEGORIES: </p>
@@ -110,6 +112,7 @@ function Home() {
               </div>
         </div>
       </div>
+      <Job/>
 
     </>
   )
