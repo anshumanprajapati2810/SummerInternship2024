@@ -66,7 +66,7 @@ const user = 1;
 </div>
   ) 
 }
-          <Link to="/internship">internships </Link>
+          <Link to="/Internship">internships </Link>
     <Link to="/Jobs">Jobs  </Link>
        
        <Link to={"/"} className='small'>contact Us</Link> 
