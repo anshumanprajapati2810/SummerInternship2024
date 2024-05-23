@@ -4,6 +4,7 @@ import '../Navbar/navbar.css'
 import Sidebar from './Sidebar'
 import {signInWithPopup, signOut} from 'firebase/auth'
 import {auth, provider} from '../../firebase/firebase.jsx'
+import { Link } from 'react-router-dom'
 
 function Navbar() {
 
@@ -60,8 +61,12 @@ function Navbar() {
                     <img src={logo} alt="" />
                 </div>
                 <div className="elem">
-                    <p id='int' onMouseEnter={showInternships} >Internship <i id='ico' onClick={hideInternships} className='bi bi-caret-down-fill'></i></p>
-                    <p onMouseEnter={showJobs} >Jobs <i id='ico2' onClick={hideJobs} className='bi bi-caret-down-fill'></i> </p>
+                    <Link to={'/Internship'}>
+                        <p id='int' onMouseEnter={showInternships} >Internship <i id='ico' onClick={hideInternships} className='bi bi-caret-down-fill'></i></p>
+                    </Link>
+                    <Link to={"/Jobs"}>
+                        <p onMouseEnter={showJobs} >Jobs <i id='ico2' onClick={hideJobs} className='bi bi-caret-down-fill'></i> </p>
+                    </Link>
                 </div>
                 <div className="search">
                     <i className='bi bi-search'></i>
