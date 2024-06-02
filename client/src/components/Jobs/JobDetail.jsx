@@ -1,15 +1,37 @@
 import React from 'react'
 import Jobs from '../Data/JobDataAvl'
 import './Job.css'
+import { useState, useSelector } from 'react'
+import { useNavigate } from 'react-router-dom'
 function JobDetail() {
+
+  // const user=useSelector(selectUser)
+  const [isDivVisible,setDivVisible]=useState(false)
+  const [textarea,setTextare]=useState("")
+  const [company,setCompany]=useState("")
+  const [category,setCategory]=useState("")
+  const navigate=useNavigate();
+  let search=window.location.search;
+  const params=new URLSearchParams(search);
+  const id=params.get("q")
+  const [data,setData] =useState([])
+
+  const show=()=>{
+    setDivVisible(true)
+  }
+  const hide=()=>{
+    setDivVisible(false)
+  }
+
   return (
+    
     <div>
       <div className="details-app">
         {
           Jobs.map((data,index)=>(
             <>
-              <h1 className='font-bold text-3xl text-center'>{data.title}</h1>
-              <div className="m-14 shadow-sm rounded-md border">
+              <h1 className='font-bold text-3xl text-center mt-3'>{data.title}</h1>
+              <div className="m-14 shadow-sm rounded-md border p-3">
               <p className='mb-4 mt-3' id='boxer'> <i className='bi bi-arrow-up-right text-blue-500' ></i> Actively Hiring</p>
               <div className="main-info align-baseline mr-96 mt-7">
                 <p className='text-xl font-bold mt-4'> {data.title}</p>
@@ -59,7 +81,7 @@ function JobDetail() {
           <p className='mt-3 text-xl font-bold text-start'> Number of opening</p>
           <p className='text-start'>{data.numberOfopning}</p>
           <div className='flex justify-center mt-6 bg-blue-500 w-40 text-center text-white font-bold '>
-          <button className='flex justify-center align-middle'>Apply</button>
+          <button className='flex justify-center align-middle' onClick={show}>Apply</button>
 
           </div>
 
@@ -69,6 +91,95 @@ function JobDetail() {
         }
       </div>
 
+      {isDivVisible &&(
+  <>
+  <div className="application-page">
+    <div className="bg">
+      <button className='close2' onClick={hide} ><i className='bi-bi-x'></i> Close</button>
+      <p>Applyion for Company {data.company}</p>
+      <p className='mt-3 text-sm font-bold text-start mb-3'>{data.aboutCompany}</p>
+
+    </div>
+    <div className="moreSteps">
+      <p className='font-semibold text-xl'>Your resume</p>
+      <small>your current resume will be submitted along with the application</small>
+
+      <p className='mt-5 font-semibold text-xl'>Cover letter</p>
+      <br />
+      <p>why should we hire for this role?</p>
+      <textarea name="coverLetter" placeholder='' id="text"  value={textarea} onChange={(e)=>setTextare(e.target.value)}></textarea>
+      <p className='mt-5 font-semibold text-xl'>your availiblity</p>
+      <p>confirme your availiblity</p>
+
+    </div>
+    <div>
+        <label>
+          <input
+            type="radio"
+            value="Yes, I am available to join immediately"
+           
+          
+          />
+          Yes, I am available to join immediately
+        </label>
+      </div>
+
+      <div>
+        <label>
+          <input
+            type="radio"
+            value="No, I am currently on notice period"
+           
+          
+          />
+          No, I am currently on notice period
+        </label>
+      </div>
+
+      <div>
+        <label>
+          <input
+            type="radio"
+            value="No, I will have to serve notice period"
+          
+           
+          />
+          No, I will have to serve notice period
+        </label>
+      </div>
+
+      <div>
+        <label>
+          <input
+            type="radio"
+            value="Other"
+            
+       
+          />
+          Other <span className='text-slate-500'>
+          (Please specify your availability)  </span> 
+        </label>
+      </div>
+      <p className='mt-5 font-semibold text-xl'>Custom resume <span className='text-slate-500'>(Optional)</span></p>
+      <small className='text-slate-500'>Employer can download and view this resume</small>
+
+ 
+      <div className="submit flex justify-center">
+        {user?(
+    <button className='submit-btn' onClick={submitApplication}  >Submit application</button>
+        ):(
+          <Link to={"/register"}>
+          <button className='submit-btn' >Submit application</button>
+          </Link>
+        )
+          
+        }
+  </div>
+  </div>
+  </>
+)
+
+}
 
     </div>  //returned div last one
   )

@@ -58,7 +58,10 @@ function Navbar() {
         <nav className='nav1'>
             <ul>
                 <div className='img'>
+                    
+                    <Link to={'/'}>
                     <img src={logo} alt="" />
+                    </Link>
                 </div>
                 <div className="elem">
                     <Link to={'/Internship'}>
