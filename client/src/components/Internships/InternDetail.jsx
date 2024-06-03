@@ -1,6 +1,7 @@
 import React from 'react'
 import Intern from '../Data/InternshipDatAvl'
 import './Intern.css'
+// import './detail.css'
 function InternDetail() {
   return (
     <div>
