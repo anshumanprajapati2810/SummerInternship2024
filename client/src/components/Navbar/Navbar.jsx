@@ -93,7 +93,9 @@ function Navbar() {
                     ):(
                         <>
                             <div className="auth">  
-                                <button className='btn1' onClick={showLogin}>Login</button>
+                                    <Link>
+                                        <button className='btn1' onClick={showLogin}>Login</button>
+                                    </Link>
                                     <Link to={'/register'}>
                                         <button className='btn2'>Register</button>
                                     </Link>

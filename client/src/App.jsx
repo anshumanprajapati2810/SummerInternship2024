@@ -44,6 +44,7 @@ function App() {
           <Route path='/Jobs' element={<JobAvl/>}/>
           <Route path='/job_details' element={<JobDetail/>}/>
           <Route path='/intern_details' element={<InternDetail/>}/>
+          <Route path='/profile'/>
 
         </Routes>
         <Footer/>
