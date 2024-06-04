@@ -5,8 +5,12 @@ import Sidebar from './Sidebar'
 import {signInWithPopup, signOut} from 'firebase/auth'
 import {auth, provider} from '../../firebase/firebase.jsx'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { selectUser } from '../../features/UserSlice.jsx'
 
 function Navbar() {
+
+    const user = useSelector(selectUser)
 
     const [isDivVisibleForIntern,setDivVisibleForIntern] = useState(false)
     const [isDivVisibleForJob,setDivVisibleForJob] = useState(false)
@@ -16,7 +20,8 @@ function Navbar() {
 
     const loginFunction=()=>{
         signInWithPopup(auth,provider).then((res)=>{
-            console.log(res);    
+            console.log(res);
+            setDivVisibleForLogin(false)    
         }).catch((err)=>{
             console.log(err);
         })
@@ -52,7 +57,7 @@ function Navbar() {
     }
 
 
-    const user = 1;
+    // const user = 1;
   return (
     <div>
         <nav className='nav1'>
@@ -75,13 +80,30 @@ function Navbar() {
                     <i className='bi bi-search'></i>
                     <input type="text" placeholder='Search' />
                 </div>
-                <div className="auth">  
-                    <button className='btn1' onClick={showLogin}>Login</button>
-                    <Link to={'/register'}>
-                        <button className='btn2'>Register</button>
-                    </Link>
 
-                </div>
+                {
+                    user?(
+                        <>
+                            <div className="profile">
+                                <Link to={"/profile"}>
+                                    <img src={user?.photo} alt="" className='rounded-full' id='picpro' />
+                                </Link>
+                            </div>
+                        </>
+                    ):(
+                        <>
+                            <div className="auth">  
+                                <button className='btn1' onClick={showLogin}>Login</button>
+                                    <Link to={'/register'}>
+                                        <button className='btn2'>Register</button>
+                                    </Link>
+                            </div>
+                        </>
+                    )
+                }
+
+
+                
                 <div className="flex mt-7 hire">
                     <button>Hire Talent</button>
                 </div>
