@@ -47,8 +47,8 @@ function Intern() {
   };
   useEffect(() => {
     filterInterships(serachCategory, searchLoaction);
-  }, []);
-console.log(filterInternship)
+  }, [serachCategory,searchLoaction]);
+// console.log(filterInternship)
 
   
  
@@ -57,7 +57,7 @@ console.log(filterInternship)
       < div className='flex internship-filter'>
       <div className="first-int  mb-14">
         <div className="filter-section w-1/5">
-          <p className='text-center' id='filter-ico'><i className='bi bi-funnel text-blue-400'></i>Filter</p>
+          <p className='text-center' id='filter-ico' onClick={showDiv}><i className='bi bi-funnel text-blue-400'></i>Filter</p>
           <div className="fill flex flex-col ml-2 mr-2 mt-2">
             <label htmlFor="pro">Profile</label>
             <input type="text" value={serachCategory} onChange={handleCategoryChange} className='profile border-2 mr-3 w-full' id='pro' placeholder='Profile Manager'  />
@@ -92,7 +92,7 @@ console.log(filterInternship)
       </div>
       <div className="all-internships">
     <div className=" show show2 flex justify-center">
-      <p className='filterico text-center' onClick={showDiv}>filter <i className="bi bi-funnel  text-blue-400"></i>   </p>
+      <p id='filter-ico' className='filterico text-center' onClick={showDiv}>filter <i className="bi bi-funnel  text-blue-400"></i>   </p>
 
     </div>
     <p className='head font-bold text-lg text-center '  >{filterInternship.length} total internships</p>
