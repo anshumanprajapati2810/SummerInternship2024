@@ -57,7 +57,14 @@ function Navbar() {
         document.getElementById("ico2").className="bi bi-caret-down-fill"
         setDivVisibleForJob(false)
     }
-
+    const showProfile=()=>{
+        document.getElementById("ico3").className="bi bi-caret-up-fill"
+        setDivVisibleProfile(false)
+    }
+    const hideProfile=()=>{
+        document.getElementById("ico3").className="bi bi-caret-down-fill"
+        setDivVisibleProfile(true)
+    }
 
     // const user = 1;
   return (
@@ -89,7 +96,7 @@ function Navbar() {
                             <div className="profile">
                                 <Link to={"/profile"}>
                                     <img src={user?.photo} alt="" className='rounded-full w-12' id='picpro' />
-                                    <i className='bi bi-caret-up-fill'></i>
+                                    <i id='ico3' className='bi bi-caret-down-fill' onMouseEnter={showProfile} onClick={hideProfile}></i>
                                 </Link>
                             </div>
                         </>
@@ -103,14 +110,25 @@ function Navbar() {
                     )
                 }
 
+                {
+                    user?(
+                        <>
+                            <button className='bt-log'>Logout <i className='bi bi-box-arrow-right'></i></button>
+                        </>
+                    ):(
+                        <>
+                            <div className="flex mt-7 hire">
+                                <button>Hire Talent</button>
+                            </div>
+                            <div className="admin">
+                                <button>Admin</button>
+                            </div>
+                        </>
+                    )
 
+                }
                 
-                <div className="flex mt-7 hire">
-                    <button>Hire Talent</button>
-                </div>
-                <div className="admin">
-                    <button>Admin</button>
-                </div>
+                
             </ul>
 
         </nav>
@@ -258,7 +276,7 @@ function Navbar() {
         <div className="profile-dropdown h-16 rounded-sm shadow-sm">
             <p className='font-bold'>{user?.name}</p>
             <p className='font-medium'>{user?.email}</p>
-           
+            
         </div>
     )
 
