@@ -25,12 +25,12 @@ function Navbar() {
         }).catch((err)=>{
             console.log(err);
         })
+        setDivVisibleForLogin(false)
     }
 
     const showLogin=()=>{
         setDivVisibleForLogin(true)
         // loginFunction();
-        console.log(user)
     }
     const closeLogin =()=>{
         setDivVisibleForLogin(false)
@@ -88,7 +88,7 @@ function Navbar() {
                         <>
                             <div className="profile">
                                 <Link to={"/profile"}>
-                                    <img src={user?.photo} alt="" className='rounded-full' id='picpro' />
+                                    <img src={user?.photo} alt="" className='rounded-full w-12' id='picpro' />
                                 </Link>
                             </div>
                         </>
@@ -98,7 +98,7 @@ function Navbar() {
                                 <button className='btn1' onClick={showLogin}>Login</button>
                                 <button className='btn2'><Link  to="/register">Register</Link></button>
                             </div>
-            </>
+                        </>
                     )
                 }
 
@@ -226,7 +226,7 @@ function Navbar() {
                 </>
             ):(
                 <>
-                                   <div className="flex bg-white rounded-lg justify-center overflow-hidden mx-auto max-w-sm lg:max-w-4xl">
+                    <div className="flex bg-white rounded-lg justify-center overflow-hidden mx-auto max-w-sm lg:max-w-4xl">
 <div className="w-full p-8 lg:w-1/2">
                  <div className="mt-4">
                  <label className="block text-gray-700 text-sm font-bold mb-2">Email </label>

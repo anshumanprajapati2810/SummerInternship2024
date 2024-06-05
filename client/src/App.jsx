@@ -14,7 +14,7 @@ import { selectUser,login,logout } from './features/UserSlice.jsx'
 import { auth } from './firebase/firebase.jsx'
 function App() {
   const user = useSelector(selectUser);
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
   useEffect(()=>{
     
       auth.onAuthStateChanged((authuser)=>{
