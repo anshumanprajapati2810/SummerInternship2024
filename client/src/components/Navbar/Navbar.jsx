@@ -89,6 +89,7 @@ function Navbar() {
                             <div className="profile">
                                 <Link to={"/profile"}>
                                     <img src={user?.photo} alt="" className='rounded-full w-12' id='picpro' />
+                                    <i className='bi bi-caret-up-fill'></i>
                                 </Link>
                             </div>
                         </>
