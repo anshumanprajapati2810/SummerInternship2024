@@ -1,28 +1,21 @@
 import React from 'react'
 import Jobs from '../Data/JobDataAvl'
 import './Job.css'
-import { useState, useSelector } from 'react'
+import { useState} from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { selectUser } from '../../features/UserSlice'
 function JobDetail() {
 
-  // const user=useSelector(selectUser)
-  const [isDivVisible,setDivVisible]=useState(false)
-  const [textarea,setTextare]=useState("")
-  const [company,setCompany]=useState("")
-  const [category,setCategory]=useState("")
-  const navigate=useNavigate();
-  let search=window.location.search;
-  const params=new URLSearchParams(search);
-  const id=params.get("q")
-  const [data,setData] =useState([])
-
+  const user = useSelector(selectUser)
+  const [isDivVisible, setDivVisible] = useState(false)
+  const [textarea, setTextarea] = useState("") 
   const show=()=>{
     setDivVisible(true)
   }
   const hide=()=>{
     setDivVisible(false)
   }
-
   return (
     
     <div>
@@ -90,35 +83,32 @@ function JobDetail() {
           ))
         }
       </div>
-
-      {isDivVisible &&(
-  <>
-  <div className="application-page">
-    <div className="bg">
-      <button className='close2' onClick={hide} ><i className='bi-bi-x'></i> Close</button>
-      <p>Applyion for Company {data.company}</p>
-      <p className='mt-3 text-sm font-bold text-start mb-3'>{data.aboutCompany}</p>
-
-    </div>
-    <div className="moreSteps">
-      <p className='font-semibold text-xl'>Your resume</p>
-      <small>your current resume will be submitted along with the application</small>
-
-      <p className='mt-5 font-semibold text-xl'>Cover letter</p>
-      <br />
-      <p>why should we hire for this role?</p>
-      <textarea name="coverLetter" placeholder='' id="text"  value={textarea} onChange={(e)=>setTextare(e.target.value)}></textarea>
-      <p className='mt-5 font-semibold text-xl'>your availiblity</p>
-      <p>confirme your availiblity</p>
-
-    </div>
-    <div>
+      {
+          isDivVisible && (
+            <>
+              <div className="application-page">
+                <div className="bg">
+                  <button className="close2" onClick={hide}>
+                    <i className='bi bi-x'>Close
+                      <p>Apply for Company</p>
+                      <p className='mt-3 text-xl font-bold text-start mb-3'>About Company</p>
+                    </i>
+                  </button>
+                </div>
+                <div className="moreSteps">
+                  <p className='font-semibold text-xl'>Your Resume</p>
+                  <small>Your current resume will be submitted along with your application</small>
+                  <p className="mt-5 font-semibold text-xl">Cover Letter</p>
+                  <br />
+                  <p>Why should we hire you?</p>
+                  <textarea name="coverletter" id="textarea" value={textarea} onChange={(e)=>setTextarea(e.target.value)}></textarea>
+                  <p className='mt-5 text-xl font-semibold'>Your Availability</p>
+                  <p>Confirm Availability</p>
+      <div>
         <label>
           <input
             type="radio"
             value="Yes, I am available to join immediately"
-           
-          
           />
           Yes, I am available to join immediately
         </label>
@@ -129,8 +119,6 @@ function JobDetail() {
           <input
             type="radio"
             value="No, I am currently on notice period"
-           
-          
           />
           No, I am currently on notice period
         </label>
@@ -141,8 +129,6 @@ function JobDetail() {
           <input
             type="radio"
             value="No, I will have to serve notice period"
-          
-           
           />
           No, I will have to serve notice period
         </label>
@@ -153,8 +139,6 @@ function JobDetail() {
           <input
             type="radio"
             value="Other"
-            
-       
           />
           Other <span className='text-slate-500'>
           (Please specify your availability)  </span> 
@@ -166,20 +150,23 @@ function JobDetail() {
  
       <div className="submit flex justify-center">
         {user?(
-    <button className='submit-btn' onClick={submitApplication}  >Submit application</button>
+    <button className='submit-btn' >Submit application</button>
         ):(
           <Link to={"/register"}>
-          <button className='submit-btn' >Submit application</button>
+          <button className='submit-btn'  >Submit application</button>
           </Link>
         )
           
         }
   </div>
-  </div>
-  </>
-)
+                </div>
 
-}
+              </div>
+            </>
+
+          )
+        }
+      
 
     </div>  //returned div last one
   )

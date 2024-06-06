@@ -7,10 +7,12 @@ import {auth, provider} from '../../firebase/firebase.jsx'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../../features/UserSlice.jsx'
+import {useNavigate} from 'react-router-dom'
 
 function Navbar() {
 
     const user = useSelector(selectUser)
+    const navigate = useNavigate()
 
     const [isDivVisibleForIntern,setDivVisibleForIntern] = useState(false)
     const [isDivVisibleForJob,setDivVisibleForJob] = useState(false)
@@ -65,8 +67,11 @@ function Navbar() {
         document.getElementById("ico3").className="bi bi-caret-down-fill"
         setDivVisibleProfile(true)
     }
+    const logoutFuntion=()=>{
+        signOut(auth);
+        navigate("/")
+    }
 
-    // const user = 1;
   return (
     <div>
         <nav className='nav1'>
@@ -113,7 +118,7 @@ function Navbar() {
                 {
                     user?(
                         <>
-                            <button className='bt-log'>Logout <i className='bi bi-box-arrow-right'></i></button>
+                            <button className='bt-log' onClick={logoutFuntion}>Logout <i className='bi bi-box-arrow-right'></i></button>
                         </>
                     ):(
                         <>

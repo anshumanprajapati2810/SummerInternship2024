@@ -1,8 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Intern from '../Data/InternshipDatAvl'
 import './Intern.css'
-// import './detail.css'
+import './detail.css'
+import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { selectUser } from '../../features/UserSlice'
 function InternDetail() {
+
+  const user = useSelector(selectUser)
+  const [isDivVisible, setDivVisible] = useState(false)
+  const [textarea, setTextarea] = useState("") 
+  const show=()=>{
+    setDivVisible(true)
+  }
+  const hide=()=>{
+    setDivVisible(false)
+  }
+
   return (
     <div>
       <div className="details-app">
@@ -60,7 +74,7 @@ function InternDetail() {
           <p className='mt-3 text-xl font-bold text-start'> Number of opening</p>
           <p className='text-start'>{data.numberOfopning}</p>
           <div className='flex justify-center mt-6 bg-blue-500 w-40 text-center text-white font-bold '>
-          <button className='flex justify-center align-middle'>Apply</button>
+          <button className='flex justify-center align-middle' onClick={show}>Apply</button>
 
           </div>
 
@@ -68,8 +82,90 @@ function InternDetail() {
             </>
           ))
         }
+        {
+          isDivVisible && (
+            <>
+              <div className="application-page">
+                <div className="bg">
+                  <button className="close2" onClick={hide}>
+                    <i className='bi bi-x'>Close
+                      <p>Apply for Company</p>
+                      <p className='mt-3 text-xl font-bold text-start mb-3'>About Company</p>
+                    </i>
+                  </button>
+                </div>
+                <div className="moreSteps">
+                  <p className='font-semibold text-xl'>Your Resume</p>
+                  <small>Your current resume will be submitted along with your application</small>
+                  <p className="mt-5 font-semibold text-xl">Cover Letter</p>
+                  <br />
+                  <p>Why should we hire you?</p>
+                  <textarea name="coverletter" id="textarea" value={textarea} onChange={(e)=>setTextarea(e.target.value)}></textarea>
+                  <p className='mt-5 text-xl font-semibold'>Your Availability</p>
+                  <p>Confirm Availability</p>
+      <div>
+        <label>
+          <input
+            type="radio"
+            value="Yes, I am available to join immediately"
+          />
+          Yes, I am available to join immediately
+        </label>
       </div>
 
+      <div>
+        <label>
+          <input
+            type="radio"
+            value="No, I am currently on notice period"
+          />
+          No, I am currently on notice period
+        </label>
+      </div>
+
+      <div>
+        <label>
+          <input
+            type="radio"
+            value="No, I will have to serve notice period"
+          />
+          No, I will have to serve notice period
+        </label>
+      </div>
+
+      <div>
+        <label>
+          <input
+            type="radio"
+            value="Other"
+          />
+          Other <span className='text-slate-500'>
+          (Please specify your availability)  </span> 
+        </label>
+      </div>
+      <p className='mt-5 font-semibold text-xl'>Custom resume <span className='text-slate-500'>(Optional)</span></p>
+      <small className='text-slate-500'>Employer can download and view this resume</small>
+
+ 
+      <div className="submit flex justify-center">
+        {user?(
+    <button className='submit-btn' >Submit application</button>
+        ):(
+          <Link to={"/register"}>
+          <button className='submit-btn'  >Submit application</button>
+          </Link>
+        )
+          
+        }
+  </div>
+                </div>
+
+              </div>
+            </>
+
+          )
+        }
+      </div>
 
 
     </div>
