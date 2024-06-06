@@ -56,3 +56,7 @@ navbar-sidebar work completed (22-05-2024)
   
 
     </div>
+
+------06/06/2024------
+backend database conncted(✔️)
+api/application = data sent for application(✔️)
