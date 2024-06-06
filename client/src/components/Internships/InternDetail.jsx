@@ -92,7 +92,7 @@ function InternDetail() {
                       <p>Apply for Company</p>
                       <p className='mt-3 text-xl font-bold text-start mb-3'>About Company</p>
                     </i> 
-                    
+
                   </button>
                 </div>
                 <div className="moreSteps">
