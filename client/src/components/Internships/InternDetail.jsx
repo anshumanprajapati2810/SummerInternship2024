@@ -91,7 +91,8 @@ function InternDetail() {
                     <i className='bi bi-x'>Close
                       <p>Apply for Company</p>
                       <p className='mt-3 text-xl font-bold text-start mb-3'>About Company</p>
-                    </i>
+                    </i> 
+                    
                   </button>
                 </div>
                 <div className="moreSteps">
