@@ -60,3 +60,7 @@ navbar-sidebar work completed (22-05-2024)
 ------06/06/2024------
 backend database conncted(✔️)
 api/application = data sent for application(✔️)
+
+------07/06/2024------
+all apis created
+api integration started at home.jsx (19.00 at video)

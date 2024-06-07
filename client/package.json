@@ -1,7 +1,7 @@
 {
   "name": "client",
   "private": true,
-  "proxy" : "http://localhost:3000/api",
+  "proxy": "http://localhost:3000/api",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.5",
+    "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "firebase": "^10.12.0",

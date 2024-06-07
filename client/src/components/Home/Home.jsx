@@ -12,8 +12,16 @@ import Job from './Job.jsx'
 function Home() {
 
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("Big Brands");
+  const [internshipData, setInternshipData] = useState([]);
 
+  useEffect(()=>{
+    const fetchData=async()=>{
+        const response = await axios.get("http://localhost:3000/api/internship")
+        setInternshipData(response.data.data)
+
+    }
+  })
 
   const filterInternShips=InterShipData.filter((item)=>
   !selectedCategory ||item.category === selectedCategory

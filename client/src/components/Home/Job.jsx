@@ -1,13 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import JobData from '../Data/JobDataAvl.js';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios'
 
 function Job() {
 
     const [currentSlide, setCurrentSlide] = useState(0);
-    const [selectedCategory,setSelectedCategory]= useState("")
+    const [selectedCategory,setSelectedCategory]= useState("Big Brands")
     // const [JobData, setJobData]=useState([])
+
+    useEffect(()=>{
+      const fetchData=async()=>{
+          const response = await axios.get("")
+
+      }
+    })
 
 
     const handleSlideJob =(direction)=>{
