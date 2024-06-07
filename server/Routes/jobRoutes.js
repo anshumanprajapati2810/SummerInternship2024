@@ -19,4 +19,35 @@ router.post("/", async(req,res)=>{
         res.status(500).send("Internal server error")
     }
 })
+router.get("/",async(req,res)=>{
+
+    try{
+        const data = await job.find();
+        res.status(201).json(data);
+    }
+    catch(err){
+        console.log(err);
+        res.status(500).json({error : "Internal server error"})
+    
+    }
+})
+
+router.get("/:id",async(req,res)=>{
+    const {id} = req.params;
+    try{
+        const data = await job.findById(id);
+        if(!data){
+            res.status(404).json({error : "No such application found"})
+        }
+        else{
+            res.json(data).status(200);
+        }
+    }
+    catch(err){
+        console.log(err);
+        res.status(500).json({error : "Internal server error"})
+
+    }
+})
+
 module.exports = router
