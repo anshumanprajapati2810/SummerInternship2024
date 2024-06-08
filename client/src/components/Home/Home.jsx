@@ -5,9 +5,11 @@ import second from '../../Assets/secondslide.webp'
 import third from '../../Assets/thirdsilde.webp'
 import fourth from '../../Assets/fourthslide.webp'
 import '../Home/home.css'
-import InterShipData from '../Data/InternshipDatAvl.js'
-import JobData from '../Data/JobDataAvl.js'
+// import InterShipData from '../Data/InternshipDatAvl.js'
+// import JobData from '../Data/JobDataAvl.js'
+import { useEffect } from 'react'
 import Job from './Job.jsx'
+import axios from 'axios'
 
 function Home() {
 
@@ -17,13 +19,20 @@ function Home() {
 
   useEffect(()=>{
     const fetchData=async()=>{
-        const response = await axios.get("http://localhost:3000/api/internship")
-        setInternshipData(response.data.data)
 
+        try{
+          const response = await axios.get("http://localhost:3000/api/internship")
+          setInternshipData(response.data)
+          // console.log("internship from backend")
+        }
+        catch(error){
+          console.log(error);
+        }
     }
-  })
+    fetchData();
+  },[])
 
-  const filterInternShips=InterShipData.filter((item)=>
+  const filterInternShips=internshipData.filter((item)=>
   !selectedCategory ||item.category === selectedCategory
   )
 

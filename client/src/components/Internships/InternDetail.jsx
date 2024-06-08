@@ -1,15 +1,22 @@
-import React, { useState } from 'react'
-import Intern from '../Data/InternshipDatAvl'
+import React, { useEffect, useState } from 'react'
+// import Intern from '../Data/InternshipDatAvl'
 import './Intern.css'
 import './detail.css'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../../features/UserSlice'
+import axios from 'axios'
+
 function InternDetail() {
 
   const user = useSelector(selectUser)
   const [isDivVisible, setDivVisible] = useState(false)
   const [textarea, setTextarea] = useState("") 
+  let search = window.location.search;
+  const params = new URLSearchParams(search);
+  const id = params.get("q");
+
+
   const show=()=>{
     setDivVisible(true)
   }
@@ -17,16 +24,26 @@ function InternDetail() {
     setDivVisible(false)
   }
 
+  const [data, setData] = useState([]);
+
+  useEffect(()=>{
+    const fetchData = async()=>{
+      const response = await axios.get(`http://localhost:3000/api/internship/${id}`)
+      setData(response.data)
+    }
+    fetchData();
+  })
+
+
   return (
     <div>
       <div className="details-app">
-        {
-          Intern.map((data,index)=>(
+       
             <>
               <h1 className='font-bold text-3xl text-center mt-3'>{data.title}</h1>
               <div className="m-14 shadow-sm rounded-md border p-3">
               <p className='mb-4 mt-3' id='boxer'> <i className='bi bi-arrow-up-right text-blue-500' ></i> Actively Hiring</p>
-              <div className="main-info align-baseline mr-96 mt-7">
+              <div className="main-info align-baseline  mt-7">
                 <p className='text-xl font-bold mt-4'> {data.title}</p>
                 <p className='text-sm text-slate-300 font-bold'>{data.title}</p>
                 <p> <i className="bi bi-geo-alt-fill"></i> {data.location}</p>
@@ -80,8 +97,7 @@ function InternDetail() {
 
               </div>
             </>
-          ))
-        }
+    
         {
           isDivVisible && (
             <>

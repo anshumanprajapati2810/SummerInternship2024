@@ -22,8 +22,11 @@ router.post("/", async(req,res)=>{
 router.get("/",async(req,res)=>{
 
     try{
+        // console.log("fetching job")
         const data = await job.find();
+        // console.log("fetching job")
         res.status(201).json(data);
+        // console.log("jobs fetched")
     }
     catch(err){
         console.log(err);

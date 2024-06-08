@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import JobData from '../Data/JobDataAvl.js';
+// import JobData from '../Data/JobDataAvl.js';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
@@ -8,14 +8,22 @@ function Job() {
 
     const [currentSlide, setCurrentSlide] = useState(0);
     const [selectedCategory,setSelectedCategory]= useState("Big Brands")
-    // const [JobData, setJobData]=useState([])
+    const [JobData, setJobData]=useState([])
 
     useEffect(()=>{
       const fetchData=async()=>{
-          const response = await axios.get("")
-
+  
+          try{
+            const response = await axios.get("http://localhost:3000/api/job")
+            setJobData(response.data)
+            // console.log("job from backend")
+          }
+          catch(error){
+            console.log(error);
+          }
       }
-    })
+      fetchData();
+    },[])
 
 
     const handleSlideJob =(direction)=>{

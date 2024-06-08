@@ -1,32 +1,51 @@
 import React from 'react'
 import Jobs from '../Data/JobDataAvl'
 import './Job.css'
-import { useState} from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState,useEffect} from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../../features/UserSlice'
+
+import axios from 'axios'
 function JobDetail() {
 
   const user = useSelector(selectUser)
   const [isDivVisible, setDivVisible] = useState(false)
   const [textarea, setTextarea] = useState("") 
+
+  let search = window.location.search;
+  const params = new URLSearchParams(search);
+  const id = params.get("q");
+
+
   const show=()=>{
     setDivVisible(true)
   }
   const hide=()=>{
     setDivVisible(false)
   }
+
+  const [data, setData] = useState([]);
+
+  useEffect(()=>{
+    const fetchData = async()=>{
+      const response = await axios.get(`http://localhost:3000/api/job/${id}`)
+      setData(response.data)
+    }
+    fetchData();
+  })
+
+
   return (
     
     <div>
       <div className="details-app">
-        {
-          Jobs.map((data,index)=>(
+       
             <>
               <h1 className='font-bold text-3xl text-center mt-3'>{data.title}</h1>
               <div className="m-14 shadow-sm rounded-md border p-3">
               <p className='mb-4 mt-3' id='boxer'> <i className='bi bi-arrow-up-right text-blue-500' ></i> Actively Hiring</p>
-              <div className="main-info align-baseline mr-96 mt-7">
+              <div className="main-info align-baseline mt-7">
                 <p className='text-xl font-bold mt-4'> {data.title}</p>
                 <p className='text-sm text-slate-300 font-bold'>{data.title}</p>
                 <p> <i className="bi bi-geo-alt-fill"></i> {data.location}</p>
@@ -80,8 +99,7 @@ function JobDetail() {
 
               </div>
             </>
-          ))
-        }
+
       </div>
       {
           isDivVisible && (

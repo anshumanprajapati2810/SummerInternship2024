@@ -80,9 +80,9 @@ const closeLogin=()=>{
                 <input type="text" className='text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none' id='Lname'  value={lname} onChange={(e)=>setLname(e.target.value)}/>
 </div>
               </div>
-              <small>By signing up, you agree to our <span className='text-blue-400'>Term and Conditions.
+              <small>By signing up, you agree to our <span className='text-blue-400'>Terms and Conditions.
                 </span></small>
-                <button className='bg-blue-500 h-9 text-white font-bold py-2 mt-4 px-4 w-full rounded hover:bg-blue-600'>Sing Up </button>
+                <button className='bg-blue-500 h-9 text-white font-bold py-2 mt-4 px-4 w-full rounded hover:bg-blue-600'>Sign Up </button>
                 Already registered? <span className='text-blue-400 cursor-pointer' onClick={showLogin}>Login</span> 
 </div>
           </div>

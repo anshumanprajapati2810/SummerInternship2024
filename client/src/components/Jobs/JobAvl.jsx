@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import "./Job.css"
 import compLogo from "../../Assets/netflix.png"
 import { Link } from 'react-router-dom';
-import JobData from '../Data/JobDataAvl';
+import axios from 'axios'
+
 function JobAvl() {
 
 const [serachCategory,setSearchCategory]=useState("");
@@ -10,6 +11,22 @@ const [searchLoaction,setSearchLocation]=useState("")
 const [jobData,setJobData]=useState([])
 const [filterJob,setFilterJob]=useState([])
 const [isDivVisible,setDivVisible]=useState(false)
+
+useEffect(()=>{
+  const fetchData=async()=>{
+    try{
+      const response = await axios.get("http://localhost:3000/api/job")
+      console.log(response.data)
+      setJobData(response.data)
+      // console.log(jobData)
+    }
+    catch(error){
+      console.log(error)
+    }
+  }
+  fetchData();
+},[])
+
 
   const showDiv=()=>{
   setDivVisible(true)
@@ -30,8 +47,9 @@ const [isDivVisible,setDivVisible]=useState(false)
     setFilterJob([serachCategory,loactionValue])
   }
 const filterJobs=(category,location)=>{
-  const filterData=JobData.filter(
+  const filterData=jobData.filter(
     (Job)=>
+    
     Job.category.toLowerCase().includes(category.toLowerCase())&&
     Job.location.toLowerCase().includes(location.toLowerCase())
     )
@@ -40,6 +58,7 @@ const filterJobs=(category,location)=>{
 useEffect(()=>{
 
   filterJobs(serachCategory,searchLoaction);
+
 
 },[searchLoaction,serachCategory])
 
@@ -86,7 +105,7 @@ useEffect(()=>{
 
   <div className="all-internships">
     <div className=" show show2 flex justify-center">
-      <p id='filter-ico' className='filterico text-center' >filter <i class="bi bi-funnel  text-blue-400" onClick={showDiv}></i>   </p>
+      <p id='filter-ico' className='filterico text-center' >filter <i className="bi bi-funnel  text-blue-400" onClick={showDiv}></i>   </p>
 
     </div>
     <p className='head font-bold text-lg text-center '>{ filterJob.length} total Jobs</p>
@@ -109,18 +128,18 @@ useEffect(()=>{
 <p className=' mt-2'>{data.location}</p>
 </div>
 <div className="flex text-sm justify-between">
-  <p className='mt-3'> <i class="bi bi-play-circle-fill"></i>   Start Date  <br />  {data.StartDate}</p>
+  <p className='mt-3'> <i className="bi bi-play-circle-fill"></i>   Start Date  <br />  {data.StartDate}</p>
 
 
-  <p className='mt-3'> <i class="bi bi-calendar-check-fill"></i>  Experience  <br />
+  <p className='mt-3'> <i className="bi bi-calendar-check-fill"></i>  Experience  <br />
   {data.Experience}</p>
 
-  <p className='mt-3'>  <i class="bi bi-cash"></i>   Salary <br /> {data.CTC}</p>
+  <p className='mt-3'>  <i className="bi bi-cash"></i>   Salary <br /> {data.CTC}</p>
    </div>
    </div>
    <span className='bg-slate-200 text-slate-400 w-20 rounded-sm text-center'>Job</span>
    <br />
-   <span><i class="bi bi-stopwatch text-green-300"></i>23/11/2065</span>
+   <span><i className="bi bi-stopwatch text-green-300"></i>23/11/2065</span>
    <div className="flex justify-end" id='hr'>
 <Link className='mt-10' to={`/detailjob?q=${data._id}`}>
 <button id='viewButtons' className='bg-transparent text-blue-500'>View In Deatils</button></Link>
