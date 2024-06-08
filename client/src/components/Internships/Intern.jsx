@@ -2,8 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useState, useEffect} from 'react';
 import '../Internships/Intern.css'
-import InternShipData from '../Data/InternshipDatAvl'
+// import InternShipData from '../Data/InternshipDatAvl'
 import compLogo from '../../Assets/netflix.png'
+import axios from 'axios';
 
 function Intern() {
   const [serachCategory,setSearchCategory]=useState("");
@@ -11,9 +12,23 @@ function Intern() {
   const [filterInternship,setFilterInternship]=useState([])
   const [isDivVisible,setDivVisible]=useState(false)
   // const [internOpening, setInternOprning] = useState([])
-  // const [InternData,setInternData]=useState([])
+  const [InternData,setInternData]=useState([])
 
-
+  useEffect(()=>{
+    const fetchData=async()=>{
+      try{
+        const response = await axios.get("http://localhost:3000/api/internship")
+        console.log("response data ",response.data)
+        setInternData(response.data)
+        setFilterInternship(response.data)
+        // console.log(jobData)
+      }
+      catch(error){
+        console.log(error)
+      }
+    }
+    fetchData();
+  },[])
 
   const showDiv = ()=>{
     setDivVisible(true)
@@ -35,7 +50,7 @@ function Intern() {
   const filterInterships = (category, location) => {
     // if (InternData && InternData.length > 0) {
     
-        const filterData = InternShipData.filter(
+        const filterData = InternData.filter(
           (internship) =>
             internship.category.toLowerCase().includes(category.toLowerCase()) &&
             internship.location.toLowerCase().includes(location.toLowerCase())
@@ -99,7 +114,7 @@ function Intern() {
 
     { filterInternship.map((data,index)=>(
 
-<div className='shadow-lg rounded-lg bg-white m-7 ' id='display'>
+<div className='shadow-lg rounded-lg bg-white m-7 ' id='display' key={index}>
   <div className="m-4 pt-2">
   <p className='mb-4 mt-2 ' id='boxer'> <i className='bi bi-arrow-up-right text-blue-500' ></i> Actively Hiring</p>
   <div className="flex justify-end">

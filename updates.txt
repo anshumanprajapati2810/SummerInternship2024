@@ -64,3 +64,7 @@ api/application = data sent for application(✔️)
 ------07/06/2024------
 all apis created
 api integration started at home.jsx (19.00 at video)
+
+------08-06-2024------
+job internship mapping issues
+admiin panel started
