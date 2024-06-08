@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectUser,login,logout } from './features/UserSlice.jsx'
 import { auth } from './firebase/firebase.jsx'
 import Profile from './profile/Profile.jsx'
+import adminLogin from './Admin/adminLogin.jsx'
 function App() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ function App() {
           <Route path='/detailjob' element={<JobDetail/>}/>
           <Route path='/detailInternship' element={<InternDetail/>}/>
           <Route path='/profile' element={<Profile/>}/>
+          <Route path='/adminlogin' element={<adminLogin/>}/>
 
         </Routes>
         <Footer/>

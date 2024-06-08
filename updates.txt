@@ -67,4 +67,5 @@ api integration started at home.jsx (19.00 at video)
 
 ------08-06-2024------
 job internship mapping issues
-admiin panel started
+admiin panel done
+admin login started (12.00)
