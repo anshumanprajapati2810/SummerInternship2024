@@ -11,7 +11,7 @@ function Intern() {
   const [searchLoaction,setSearchLocation]=useState("")
   const [filterInternship,setFilterInternship]=useState([])
   const [isDivVisible,setDivVisible]=useState(false)
-  // const [internOpening, setInternOprning] = useState([])
+  const [internOpening, setInternOprning] = useState([])
   const [InternData,setInternData]=useState([])
 
   useEffect(()=>{
@@ -48,7 +48,7 @@ function Intern() {
   }
 
   const filterInterships = (category, location) => {
-    // if (InternData && InternData.length > 0) {
+    if (InternData && InternData.length > 0) {
     
         const filterData = InternData.filter(
           (internship) =>
@@ -58,7 +58,7 @@ function Intern() {
         setFilterInternship(filterData);
       
       
-    // }
+    }
   };
   useEffect(() => {
     filterInterships(serachCategory, searchLoaction);

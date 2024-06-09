@@ -5,14 +5,15 @@ import { useState,useEffect} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../../features/UserSlice'
-
 import axios from 'axios'
 function JobDetail() {
 
   const user = useSelector(selectUser)
   const [isDivVisible, setDivVisible] = useState(false)
   const [textarea, setTextarea] = useState("") 
-
+  const [company,setCompany]=useState("")
+  const [category,setCategory]=useState("")
+  const navigate=useNavigate();
   let search = window.location.search;
   const params = new URLSearchParams(search);
   const id = params.get("q");
@@ -31,10 +32,38 @@ function JobDetail() {
     const fetchData = async()=>{
       const response = await axios.get(`http://localhost:3000/api/job/${id}`)
       setData(response.data)
+      setCompany(company)
+      setCategory(category)
     }
     fetchData();
   })
 
+
+  const submitApplication= async()=>{
+    const text=document.getElementById("textarea")
+      if (text.value==="") {
+        alert("Fill the mendetory fildes")
+      }
+      else{
+        const bodyJson={
+          coverLetter:textarea,
+          category:category,
+          company :company,
+          user:user,
+          Application:id
+        }
+      
+        await axios.post("http://localhost:3000/api/application",bodyJson).then((res)=>{
+    
+    
+          
+        }).catch((err)=>{
+          alert("error happend")
+        })
+        alert("Done")
+        navigate("/Jobs")
+      }
+    }
 
   return (
     
@@ -168,7 +197,7 @@ function JobDetail() {
  
       <div className="submit flex justify-center">
         {user?(
-    <button className='submit-btn' >Submit application</button>
+    <button className='submit-btn' onClick={submitApplication} >Submit application</button>
         ):(
           <Link to={"/register"}>
           <button className='submit-btn'  >Submit application</button>

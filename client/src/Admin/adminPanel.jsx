@@ -1,9 +1,9 @@
+
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { TbMailbox } from "react-icons/tb";
 import { FaBriefcase } from "react-icons/fa6";
 import { FaLocationArrow } from "react-icons/fa";
-
 function adminPanel() {
   return (
     <div>
@@ -15,8 +15,8 @@ function adminPanel() {
                             <TbMailbox />
                         </div>
                         <div>
-                            <div class="mb-1 font-semibold">View Applications</div>
-                            <p class="text-sm text-gray-500">View All the Applications That you got from applicants</p>
+                            <div className="mb-1 font-semibold">View Applications</div>
+                            <p className="text-sm text-gray-500">View All the Applications That you got from applicants</p>
                         </div>
                     </Link>
                     <Link to={"/postjob"} className='group flex gap-4'>
@@ -24,8 +24,8 @@ function adminPanel() {
                             <FaBriefcase />
                         </div>
                         <div>
-                            <div class="mb-1 font-semibold">Post Job</div>
-                            <p class="text-sm text-gray-500">Post Jobs According to Your Requirements</p>
+                            <div className="mb-1 font-semibold">Post Job</div>
+                            <p className="text-sm text-gray-500">Post Jobs According to Your Requirements</p>
                         </div>
                     </Link>
                     <Link to={"/postinternship"} className='group flex gap-4'>
@@ -33,8 +33,8 @@ function adminPanel() {
                             <FaLocationArrow />
                         </div>
                         <div>
-                            <div class="mb-1 font-semibold">Post InternShips</div>
-                            <p class="text-sm text-gray-500">Post InternShip According To Your Requirements</p>
+                            <div className="mb-1 font-semibold">Post InternShips</div>
+                            <p className="text-sm text-gray-500">Post InternShip According To Your Requirements</p>
                         </div>
                     </Link>
                 </div>

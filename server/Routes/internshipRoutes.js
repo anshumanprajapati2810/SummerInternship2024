@@ -32,6 +32,18 @@ router.get("/",async(req,res)=>{
     
     }
 })
+router.delete("/",async(req,res)=>{
+
+    try{
+        const data = await internship.findOneAndDelete();
+        res.status(201).json(data);
+    }
+    catch(err){
+        console.log(err);
+        res.status(500).json({error : "Internal server error"})
+    
+    }
+})
 
 router.get("/:id",async(req,res)=>{
     const {id} = req.params;

@@ -1,6 +1,8 @@
 const express = require("express")
 const router = express.Router();
 const application = require('../Model/Application.js')
+const app = express();
+app.use(express.json())
 
 router.post("/", async(req,res)=>{
     const applicationData = new application({
@@ -46,29 +48,39 @@ router.get("/:id",async(req,res)=>{
 
     }
 })
-router.put("/:id",async(req,res)=>{
-    const {id} = req.params;
-    const {action} = req.params
-    
-    if(action === "accepted"){
-        status = "accepted"
+router.put("/:id", async (req, res) => {
+    const { id } = req.params;
+    const { action } = req.body;
+
+    let status;
+
+    if (action === "accepted") {
+        status = "accepted";
+    } else if (action === "rejected") {
+        status = "rejected";
+    } else {
+        res.status(400).json({ error: "Invalid action" });
+        return; 
     }
-    else if(action === "rejected"){
-        status = "rejected"
-    }
-    else{
-        res.status(500).json({error : "Internal Server Error"})
-    }
-    const updateApplication = await application.findByIdAndUpdate(id,
-        {$set:{status}},
-        {new : true})
-        if(!updateApplication){
-            res.status(404).json({error: "Not able to update application"})
+
+    try {
+        const updateApplication = await application.findByIdAndUpdate(
+            id,
+            { $set: { status } },
+            { new: true }
+        );
+
+        if (!updateApplication) {
+            res.status(404).json({ error: "Not able to update the application" });
+            return; 
         }
-        else{
-            res.send(200).json({success : true, data: updateApplication})
-        }
-})
+
+        res.status(200).json({ success: true, data: updateApplication });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
 
 
 
