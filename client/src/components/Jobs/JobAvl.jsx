@@ -16,7 +16,7 @@ useEffect(()=>{
   const fetchData=async()=>{
     try{
       const response = await axios.get("http://localhost:3000/api/job")
-      console.log("response data ",response.data)
+      // console.log("response data ",response.data)
       setJobData(response.data)
       setFilterJob(response.data)
       // console.log(jobData)
@@ -57,7 +57,7 @@ const filterJobs=(category,location)=>{
     setFilterJob(filterData)
 
 }
-console.log("filtered data", filterJob)
+// console.log("filtered data", filterJob)
 useEffect(()=>{
 
   filterJobs(serachCategory,searchLoaction);

@@ -3,21 +3,43 @@ const router = express.Router();
 const internship = require('../Model/Internship.js')
 const interndata = require('../Data/InternshipDatAvl.js')
 
-router.post("/", async(req,res)=>{
-    try{
-        const internships =  interndata;
-        const savedInternships = [];
-        for(const internshipData of internships){
-            const newInternship = new internship(internshipData);
-            const savedInternship = await  newInternship.save();
-            savedInternships.push(savedInternship);
-        }
-        res.send(savedInternships);
-    }
-    catch(error){
-        console.log("Error while posting data: ", error)
-        res.status(500).send("Internal server error")
-    }
+// router.post("/", async(req,res)=>{
+//     try{
+//         const internships =  interndata;
+//         const savedInternships = [];
+//         for(const internshipData of internships){
+//             const newInternship = new internship(internshipData);
+//             const savedInternship = await  newInternship.save();
+//             savedInternships.push(savedInternship);
+//         }
+//         res.send(savedInternships);
+//     }
+//     catch(error){
+//         console.log("Error while posting data: ", error)
+//         res.status(500).send("Internal server error")
+//     }
+// })
+
+router.post("/",async (req,res)=>{
+    const internshipData=new internship({
+        title: req.body.title,
+        company: req.body.company,
+        location: req.body.location,
+        Duration: req.body.Duration,
+        category: req.body.category,
+        aboutCompany:req.body.aboutCompany,
+        aboutInternship:req.body.aboutInternship,
+        Whocanapply: req.body.Whocanapply,
+        perks: req.body.perks,
+        AdditionalInfo:req.body.AdditionalInfo,
+        stipend: req.body.stipend,
+        StartDate:req.body.StartDate,
+    })
+    await internshipData.save().then((data)=>{
+        res.send(data)
+    }).catch((error)=>{
+        console.log(error,"not able to post the data")
+    })
 })
 
 router.get("/",async(req,res)=>{
