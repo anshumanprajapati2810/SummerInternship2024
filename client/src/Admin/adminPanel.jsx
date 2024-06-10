@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { TbMailbox } from "react-icons/tb";
 import { FaBriefcase } from "react-icons/fa6";
 import { FaLocationArrow } from "react-icons/fa";
+
 function adminPanel() {
   return (
     <div>
