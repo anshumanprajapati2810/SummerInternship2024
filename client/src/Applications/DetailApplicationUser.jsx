@@ -9,7 +9,7 @@ function DetailApplicationUser() {
 const id=params.get("a")
 useEffect(()=>{
    const fetchData= async()=>{
-  const response=await axios.get(`http://localhost:3000/api/application/${id}`)
+  const response=await axios.get(`https://internshipbackend-17v9.onrender.com/api/application/${id}`)
 
   setData([response.data])
    }
