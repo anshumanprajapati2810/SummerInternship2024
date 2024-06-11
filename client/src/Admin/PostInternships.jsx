@@ -53,7 +53,7 @@ function Postinternships() {
   
       }
       
-  axios.post("https://internshipbackend-17v9.onrender.com/api/internship",bodyJson).then((res)=>{
+  axios.post("http://localhost:3000/api/internship",bodyJson).then((res)=>{
       console.log(res.data)
     }).catch((err)=>
     console.log(err))

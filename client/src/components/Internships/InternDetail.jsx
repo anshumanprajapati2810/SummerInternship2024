@@ -32,7 +32,7 @@ function InternDetail() {
 
   useEffect(()=>{
     const fetchData = async()=>{
-      const response = await axios.get(`https://internshipbackend-17v9.onrender.com/api/internship/${id}`)
+      const response = await axios.get(`http://localhost:3000/api/internship/${id}`)
       setData(response.data)
       const {company,category}=response.data;
       setCompany(company)
@@ -55,7 +55,7 @@ function InternDetail() {
           Application:id
         }
       
-        await axios.post("https://internshipbackend-17v9.onrender.com/api/application",bodyJson).then((res)=>{
+        await axios.post("http://localhost:3000/api/application",bodyJson).then((res)=>{
     
     
           

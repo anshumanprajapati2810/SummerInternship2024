@@ -21,7 +21,7 @@ function Home() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://internshipbackend-17v9.onrender.com/api/internship"
+          "http://localhost:3000/api/internship"
         );
         setInternshipData(response.data);
         // console.log("internship from backend")
