@@ -161,7 +161,7 @@
   
   .log {
     position: relative;
-    left: 35%;
+    /* left: 35%; */
   }
   
   @media screen and (max-width: 768px) {
@@ -219,7 +219,7 @@
   }
   
   .internShip-Info {
-    width: 116%;
+    width: 100%;
     position: relative;
     height: 291px;
   
@@ -256,7 +256,8 @@
   
   }
   .BUttons{
-    margin: 22PX;
+    margin-top: 22px;
+    margin-bottom: 22px;
   }
   
   #admin{

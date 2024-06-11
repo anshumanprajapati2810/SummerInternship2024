@@ -74,13 +74,19 @@ function Home() {
         </div>
       </div>
       <div className="flex BUttons">
-        <button className="back" onClick={() => handleSlide("left")}>
+        <button
+          className="back flex justify-center items-center"
+          onClick={() => handleSlide("left")}
+        >
           {" "}
-          <i className="bi bi-chevron-left" id="sideBack"></i>{" "}
+          <i className="bi bi-chevron-left text-base" id="sideBack"></i>{" "}
         </button>
-        <button className="next" onClick={() => handleSlide("right")}>
+        <button
+          className="next flex justify-center items-center"
+          onClick={() => handleSlide("right")}
+        >
           {" "}
-          <i className="bi bi-chevron-right" id="slide"></i>{" "}
+          <i className="bi bi-chevron-right text-base" id="slide"></i>{" "}
         </button>
       </div>
       <div className="infoys">
@@ -206,13 +212,22 @@ function Home() {
             </div>
           </div>
           <div className="flex BUttons">
-            <button className="back" onClick={() => handleSlideIntern("left")}>
+            <button
+              className="back flex justify-center items-center"
+              onClick={() => handleSlideIntern("left")}
+            >
               {" "}
-              <i className="bi bi-chevron-left" id="sideBack"></i>{" "}
+              <i
+                className="bi bi-chevron-left text-base"
+                id="sideBack"
+              ></i>{" "}
             </button>
-            <button className="next" onClick={() => handleSlideIntern("right")}>
+            <button
+              className="next flex justify-center items-center"
+              onClick={() => handleSlideIntern("right")}
+            >
               {" "}
-              <i className="bi bi-chevron-right" id="slide"></i>{" "}
+              <i className="bi bi-chevron-right text-base" id="slide"></i>{" "}
             </button>
           </div>
         </div>
@@ -237,17 +252,16 @@ function Home() {
           <p>learners</p>
         </div>
       </div>
-      <div className="logins flex  h-32 mt-8">
-        <div className="cont">
-          <p className="flex justify-center text-white text-xl items-center m-5 w-30">
+      <div className="logins flex justify-center h-32 mt-8">
+        <div className="flex items-center">
+          <p className="flex justify-center text-white text-xl items-center m-5">
             Empower your career with InternArea today
           </p>
         </div>
-        <div className="log flex">
+        <div className="flex items-center flex-col justify-center gap-3">
           <a
             href="/register"
-            id="buttons"
-            className="flex items-center  bg-white h-9 justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100"
+            className="flex items-center bg-white h-9 justify-center text-white rounded-lg shadow-md hover:bg-gray-100"
           >
             <div className="px-4 py-3">
               <svg className="h-6 w-6" viewBox="0 0 40 40">
@@ -273,8 +287,8 @@ function Home() {
               Sign in with Google
             </p>
           </a>
-          <a to="/register">
-            <button className="btn6 text-white rounded-lg p-1">
+          <a className="w-full" to="/register">
+            <button className="btn6 w-full m-0 text-white rounded-lg p-1">
               {" "}
               Register
             </button>
