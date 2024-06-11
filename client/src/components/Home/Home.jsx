@@ -16,6 +16,7 @@ function Home() {
   const [selectedCategory, setSelectedCategory] = useState("Big Brands");
   const [internshipData, setInternshipData] = useState([]);
   console.log("Welcome to Job Portal!");
+  console.log("Again connected to locak backend")
 
   useEffect(() => {
     const fetchData = async () => {
