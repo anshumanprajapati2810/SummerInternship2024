@@ -15,9 +15,10 @@ const [isDivVisible,setDivVisible]=useState(false)
 useEffect(()=>{
   const fetchData=async()=>{
     try{
-      const response = await axios.get("http://localhost:3000/api/job")
-      console.log(response.data)
+      const response = await axios.get("https://internshipbackend-17v9.onrender.com/api/job")
+      // console.log("response data ",response.data)
       setJobData(response.data)
+      setFilterJob(response.data)
       // console.log(jobData)
     }
     catch(error){
@@ -26,7 +27,7 @@ useEffect(()=>{
   }
   fetchData();
 },[])
-
+// console.log("job data: ",jobData)
 
   const showDiv=()=>{
   setDivVisible(true)
@@ -54,7 +55,9 @@ const filterJobs=(category,location)=>{
     Job.location.toLowerCase().includes(location.toLowerCase())
     )
     setFilterJob(filterData)
+
 }
+// console.log("filtered data", filterJob)
 useEffect(()=>{
 
   filterJobs(serachCategory,searchLoaction);
@@ -112,7 +115,7 @@ useEffect(()=>{
 
     { filterJob.map((data,index)=>(
 
-<div className='shadow-lg rounded-lg bg-white m-7 ' id='display'>
+<div className='shadow-lg rounded-lg bg-white m-7 ' id='display' key={index}>
   <div className="m-4 pt-2">
   <p className='mb-4 mt-3' id='boxer'> <i className='bi bi-arrow-up-right text-blue-500' ></i> Actively Hiring</p>
   <div className="flex justify-end">
