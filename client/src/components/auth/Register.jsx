@@ -35,6 +35,34 @@ const setFalseForStudent=()=>{
 const closeLogin=()=>{
     setDivVisible(false)
 }
+const submitsignup= async()=>{
+  const text=document.getElementById("textarea")
+    if (text.value==="") {
+      alert("Fill the mendetory fildes")
+    }
+    else{
+      const bodyJson={
+        coverLetter:textarea,
+        category:category,
+        company :company,
+        user:user,
+        Application:id
+      }
+    
+      await axios.post("http://localhost:3000/api/application",bodyJson).then((res)=>{
+  
+  
+        
+      }).catch((err)=>{
+        alert("error happend")
+      })
+      alert("Done")
+      navigate("/Internship")
+    }
+  }
+
+
+
   return (
     <div>
       <div className="form">
@@ -82,7 +110,7 @@ const closeLogin=()=>{
               </div>
               <small>By signing up, you agree to our <span className='text-blue-400'>Terms and Conditions.
                 </span></small>
-                <button className='bg-blue-500 h-9 text-white font-bold py-2 mt-4 px-4 w-full rounded hover:bg-blue-600'>Sign Up </button>
+                <button className='bg-blue-500 h-9 text-white font-bold py-2 mt-4 px-4 w-full rounded hover:bg-blue-600' onClick={submitsignup} >Sign Up </button>
                 Already registered? <span className='text-blue-400 cursor-pointer' onClick={showLogin}>Login</span> 
 </div>
           </div>
