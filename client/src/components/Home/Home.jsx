@@ -15,8 +15,8 @@ function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState("Big Brands");
   const [internshipData, setInternshipData] = useState([]);
-  console.log("Welcome to Job Portal!");
-  console.log("Again connected to locak backend")
+  // console.log("Welcome to Job Portal!");
+  // console.log("Again connected to locak backend")
 
   useEffect(() => {
     const fetchData = async () => {

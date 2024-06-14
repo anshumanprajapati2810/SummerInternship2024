@@ -4,6 +4,7 @@ import './register.css'
 import {auth,provider} from "../../firebase/firebase"
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import axios from 'axios'
 function Register() {
   const [isStudent,setStudent]=useState(true)
   const [isDivVisible, setDivVisible]=useState(false)
@@ -36,32 +37,27 @@ const closeLogin=()=>{
     setDivVisible(false)
 }
 const submitsignup= async()=>{
-  const text=document.getElementById("textarea")
-    if (text.value==="") {
-      alert("Fill the mendetory fildes")
+    if (fname==="" || lname==="" || email==="" || password==="") {
+      alert("Fill all the details")
     }
     else{
       const bodyJson={
-        coverLetter:textarea,
-        category:category,
-        company :company,
-        user:user,
-        Application:id
+        email : email,
+        password : password,
+        Fname : fname,
+        Lname : lname,
       }
     
-      await axios.post("http://localhost:3000/api/application",bodyJson).then((res)=>{
-  
-  
-        
+      await axios.post("http://localhost:3000/api/register",bodyJson).then((res)=>{
       }).catch((err)=>{
-        alert("error happend")
+        alert("unknown error happend")
       })
-      alert("Done")
-      navigate("/Internship")
+      alert("Registered successfully")
+      navigate("/")
     }
   }
 
-
+// console.log(email, password, fname, lname);
 
   return (
     <div>
