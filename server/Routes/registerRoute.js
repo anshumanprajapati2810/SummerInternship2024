@@ -15,4 +15,19 @@ router.post("/", async (req,res)=>{
         console.log("Not able to register");
     })
 })
+router.get("/", async(req,res)=>{
+    const {email,password} = req.body;
+    try{
+        const user = await Register.findOne({email,password});
+        if(user){
+            res.status(200).send(user);
+        }
+        else{
+            res.status(401).send("Invalid email or password")
+        }
+    }catch(error){
+        console.log("Error during login", error)
+        res.status(500).send("Internal server error");
+    }
+})
 module.exports  = router

@@ -165,7 +165,7 @@ const submitsignup= async()=>{
                  <input className=" text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"   placeholder='Must be atleast 6 characters'   type="password"/>
              </div>
              <div className="mt-8">
-             <button className='btn3  bg-blue-500 h-9 text-white font-bold py-2 px-4 w-full rounded hover:bg-blue-600 '>Login</button>
+             <button className='btn3  bg-blue-500 h-9 text-white font-bold py-2 px-4 w-full rounded hover:bg-blue-600'>Login</button>
              </div>
 
              <div className="mt-4 flex items-center justify-between">
