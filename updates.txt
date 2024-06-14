@@ -159,3 +159,5 @@ function adminPanel() {
 
 export default adminPanel
 
+13-06-2024
+Register API working successful.
