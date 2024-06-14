@@ -15,7 +15,7 @@ const [isDivVisible,setDivVisible]=useState(false)
 useEffect(()=>{
   const fetchData=async()=>{
     try{
-      const response = await axios.get("https://internshipbackend-17v9.onrender.com/api/job")
+      const response = await axios.get("http://localhost:3000/api/job")
       // console.log("response data ",response.data)
       setJobData(response.data)
       setFilterJob(response.data)

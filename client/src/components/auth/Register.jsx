@@ -4,6 +4,7 @@ import './register.css'
 import {auth,provider} from "../../firebase/firebase"
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import axios from 'axios'
 function Register() {
   const [isStudent,setStudent]=useState(true)
   const [isDivVisible, setDivVisible]=useState(false)
@@ -35,6 +36,29 @@ const setFalseForStudent=()=>{
 const closeLogin=()=>{
     setDivVisible(false)
 }
+const submitsignup= async()=>{
+    if (fname==="" || lname==="" || email==="" || password==="") {
+      alert("Fill all the details")
+    }
+    else{
+      const bodyJson={
+        email : email,
+        password : password,
+        Fname : fname,
+        Lname : lname,
+      }
+    
+      await axios.post("http://localhost:3000/api/register",bodyJson).then((res)=>{
+      }).catch((err)=>{
+        alert("unknown error happend")
+      })
+      alert("Registered successfully")
+      navigate("/")
+    }
+  }
+
+// console.log(email, password, fname, lname);
+
   return (
     <div>
       <div className="form">
@@ -82,7 +106,7 @@ const closeLogin=()=>{
               </div>
               <small>By signing up, you agree to our <span className='text-blue-400'>Terms and Conditions.
                 </span></small>
-                <button className='bg-blue-500 h-9 text-white font-bold py-2 mt-4 px-4 w-full rounded hover:bg-blue-600'>Sign Up </button>
+                <button className='bg-blue-500 h-9 text-white font-bold py-2 mt-4 px-4 w-full rounded hover:bg-blue-600' onClick={submitsignup} >Sign Up </button>
                 Already registered? <span className='text-blue-400 cursor-pointer' onClick={showLogin}>Login</span> 
 </div>
           </div>
@@ -141,7 +165,7 @@ const closeLogin=()=>{
                  <input className=" text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"   placeholder='Must be atleast 6 characters'   type="password"/>
              </div>
              <div className="mt-8">
-             <button className='btn3  bg-blue-500 h-9 text-white font-bold py-2 px-4 w-full rounded hover:bg-blue-600 '>Login</button>
+             <button className='btn3  bg-blue-500 h-9 text-white font-bold py-2 px-4 w-full rounded hover:bg-blue-600'>Login</button>
              </div>
 
              <div className="mt-4 flex items-center justify-between">

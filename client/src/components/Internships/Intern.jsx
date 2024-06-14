@@ -17,7 +17,7 @@ function Intern() {
   useEffect(()=>{
     const fetchData=async()=>{
       try{
-        const response = await axios.get("https://internshipbackend-17v9.onrender.com/api/internship")
+        const response = await axios.get("http://localhost:3000/api/internship")
         // console.log("response data ",response.data)
         setInternData(response.data)
         setFilterInternship(response.data)
