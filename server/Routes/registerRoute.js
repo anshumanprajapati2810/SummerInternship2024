@@ -16,9 +16,9 @@ router.post("/", async (req,res)=>{
     })
 })
 router.get("/", async(req,res)=>{
-    const {email,password} = req.body;
+    const {loginemail,loginpassword} = req.body;
     try{
-        const user = await Register.findOne({email,password});
+        const user = await Register.findOne({loginemail,loginpassword});
         if(user){
             res.status(200).send(user);
         }

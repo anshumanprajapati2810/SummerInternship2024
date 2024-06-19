@@ -12,6 +12,8 @@ function Register() {
   const [lname,setLname]=useState("")
   const [email,setEmail]=useState("")
   const [password,setPassword]=useState("")
+  const [loginpassword,setLoginPassword]=useState("")
+  const [loginemail, setLoginEmail] = useState("")
   let navigate=useNavigate()
   const handleSingin=()=>{
     signInWithPopup(auth,provider).then((res)=>{
@@ -52,12 +54,30 @@ const submitsignup= async()=>{
       }).catch((err)=>{
         alert("unknown error happend")
       })
-      alert("Registered successfully")
+      toast("Registered successfully")
       navigate("/")
     }
   }
+  const submitlogin=async()=>{
+    if(loginemail==="" || loginpassword==="")
+    {
+      alert("Enter email and password!")
+      return;
+    }
+    try{
+      const response = await axios.get("http://localhost:3000/api/register");
+      console.log(response.data);
+      toast("Login successful")
+      navigate("/")
+    }catch(error){
+      console.log("Internal server error", error)
+      toast("Login Failed")
+    }
+  }
+
 
 // console.log(email, password, fname, lname);
+// console.log(loginemail, loginpassword);
 
   return (
     <div>
@@ -92,7 +112,7 @@ const submitsignup= async()=>{
               </div> 
               <div className="mt-4">
                 <label htmlFor="password" className='border-b text-gray-700 text-sm font-bold mb-2'>Password</label>
-                <input type="text"  value={password} onChange={(e)=>setPassword(e.target.value)} className='text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none' id='password' />
+                <input type="password"  value={password} onChange={(e)=>setPassword(e.target.value)} className='text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none' id='password' />
               </div> 
               <div className="mt-4 flex justify-between">
 <div>
@@ -155,17 +175,17 @@ const submitsignup= async()=>{
  </div>
  <div className="mt-4">
                  <label className="block text-gray-700 text-sm font-bold mb-2">Email </label>
-                 <input className=" text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="email"  placeholder='john@example.com'/>
+                 <input className=" text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="email" value={loginemail} onChange={(e)=>setLoginEmail(e.target.value)} placeholder='Enter your email id' id='loginemail'/>
              </div>
              <div className="mt-4">
+                 <label className="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                 <input className=" text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"   placeholder='Enter your password'   type="password" value={loginpassword} onChange={(e)=>setLoginPassword(e.target.value)} id='loginpassword'/>
                  <div className="flex justify-between">
-                     <label className="block text-gray-700 text-sm font-bold mb-2">Password</label>
                      <a href="/" className="text-xs text-blue-500">Forget Password?</a>
                  </div>
-                 <input className=" text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"   placeholder='Must be atleast 6 characters'   type="password"/>
              </div>
              <div className="mt-8">
-             <button className='btn3  bg-blue-500 h-9 text-white font-bold py-2 px-4 w-full rounded hover:bg-blue-600'>Login</button>
+             <button className='btn3  bg-blue-500 h-9 text-white font-bold py-2 px-4 w-full rounded hover:bg-blue-600' onClick={submitlogin}>Login</button>
              </div>
 
              <div className="mt-4 flex items-center justify-between">
@@ -182,17 +202,17 @@ const submitsignup= async()=>{
 <div className="w-full p-8 lg:w-1/2">
                  <div className="mt-4">
                  <label className="block text-gray-700 text-sm font-bold mb-2">Email </label>
-                 <input className=" text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="email"  placeholder='john@example.com'/>
+                 <input className=" text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="email"  placeholder='Enter your email' value={loginemail} onChange={(e)=>setLoginEmail(e.target.value)}/>
              </div>
              <div className="mt-4">
                  <div className="flex justify-between">
                      <label className="block text-gray-700 text-sm font-bold mb-2">Password</label>
                      <a href="/" className="text-xs text-blue-500">Forget Password?</a>
                  </div>
-                 <input className=" text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"   placeholder='Must be atleast 6 characters'   type="password"/>
+                 <input className=" text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"   placeholder='Enter your password'   type="password" value={loginpassword} onChange={(e)=>setLoginPassword(e.target.value)}/>
              </div>
              <div className="mt-8">
-             <button className='btn3  bg-blue-500 h-9 text-white font-bold py-2 px-4 w-full rounded hover:bg-blue-600 '>Login</button>
+             <button className='btn3  bg-blue-500 h-9 text-white font-bold py-2 px-4 w-full rounded hover:bg-blue-600' onClick={submitlogin}>Login</button>
              </div>
 
              <div className="mt-4 flex items-center justify-between">
