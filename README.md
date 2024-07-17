@@ -6,7 +6,7 @@ MERN stack:
 React, Node.js, Express, MongoDB
 
 # Progress:
-## 📅 Week 1 Highlights:
+## 📅 Week 1
 
 ### May 13, 2024:
 ✅ Today, I immersed myself in the basics of the MERN stack, gaining a solid understanding of MongoDB, Express, React, and Node.js. It was exciting to dive into these technologies, each playing a crucial role in modern web development. I also conducted a preliminary analysis of the project's requirements, identifying both front-end and back-end needs. This gave me a clear picture of the scope and direction of our project.
@@ -90,7 +90,7 @@ Overall, it was a highly productive week, setting a strong foundation for the pr
 
 ✅ Today was all about reviewing the communication flow between server and client components. We identified areas for optimization to further improve data handling efficiency. Additionally, we outlined a roadmap for future enhancements based on user feedback and project requirements for the next phase of development.  
 
-## 📅 Week 5 Highlights:
+## 📅 Week 5
 
 ### June 10, 2024:
 ✅ I focused on configuring the login functionality for admins, ensuring that administrators could securely access the system. This involved setting up mechanisms specifically tailored to admin users.
@@ -110,7 +110,7 @@ Overall, it was a highly productive week, setting a strong foundation for the pr
 ### June 15, 2024:
 ✅ I documented the admin functionalities, both on the client and server sides, to facilitate team collaboration and future maintenance. This documentation included details on the admin login process, available features, and backend configurations. Preparing for the next development phase, I outlined tasks and priorities to keep the project on track.
 
-## 📅 Week 6 Highlights:
+## 📅 Week 6 
 
 ### June 17, 2024:
 ✅ I focused on configuring the detailed server side functionalities for admin users. This involved setting up comprehensive backend processes to handle various admin-specific tasks securely and efficiently, including user management and data oversight.
