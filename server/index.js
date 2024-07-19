@@ -20,7 +20,12 @@ app.use((req,res,next)=>{
 app.use("/api",router)
 
 app.get('/', (req,res)=>{
-    res.send("Hello this is my backend")
+
+    const ip = req.headers['cf-connecting-ip'] ||
+    req.headers['x-real-ip'] ||
+    req.headers['x-forwarded-for'] ||
+    req.socket.remoteAddress;
+    res.send("Hello this is my backend " +  ip)
 })
 
 app.listen(port,()=>{
